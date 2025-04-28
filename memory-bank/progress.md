@@ -17,12 +17,18 @@
   - IngredientForm for adding/editing ingredients
   - RecipeCard for displaying recipe information
   - RecipeForm for creating/editing recipes with ingredient selection
+- Created calendar view for meal planning:
+  - Monthly calendar display with day view
+  - Add meals to specific dates
+  - View planned meals per day
+  - Dialog for selecting recipes and adding notes
+  - Integration with meal plans API
 
 ## What's Left to Build
 1. ~~Implement CRUD operations for recipes and ingredients.~~ ✅
 2. ~~Develop UI components for recipe cards, forms, and ingredient tracking.~~ ✅
 3. ~~Build API routes for database interactions.~~ ✅
-4. Create a calendar view for meal planning.
+4. ~~Create a calendar view for meal planning.~~ ✅
 5. Add functionality for shopping list generation.
 6. Implement photo storage for successful meals.
 7. Test database operations using Prisma Studio.

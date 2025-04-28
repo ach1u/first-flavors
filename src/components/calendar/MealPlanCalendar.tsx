@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import {
   Paper,
-  Box,
   Typography,
   IconButton,
+  Box,
   Stack,
 } from '@mui/material';
 import {
@@ -65,10 +65,10 @@ export default function MealPlanCalendar({ mealPlans, onAddMeal }: MealPlanCalen
       </Stack>
 
       {/* Calendar Grid */}
-      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 1 }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
         {/* Day Labels */}
-        {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-          <Box key={day}>
+        {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+          <Box key={day} sx={{ width: 'calc((100% - 6 * 8px) / 7)' }}>
             <Typography align="center" sx={{ fontWeight: 'bold' }}>
               {day}
             </Typography>
@@ -81,52 +81,53 @@ export default function MealPlanCalendar({ mealPlans, onAddMeal }: MealPlanCalen
           const isCurrentMonth = isSameMonth(day, currentDate);
           
           return (
-            <Paper
-              key={day.toString()}
-              sx={{
-                p: 1,
-                height: 120,
-                bgcolor: !isCurrentMonth ? 'grey.100' :
-                         isToday(day) ? 'primary.light' : 'background.paper',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-              elevation={isToday(day) ? 3 : 1}
-            >
-              <Box display="flex" justifyContent="space-between" alignItems="center">
-                <Typography
-                  color={!isCurrentMonth ? 'text.disabled' : 'inherit'}
-                >
-                  {format(day, 'd')}
-                </Typography>
-                <IconButton
-                  size="small"
-                  onClick={() => onAddMeal(day)}
-                  sx={{ visibility: isCurrentMonth ? 'visible' : 'hidden' }}
-                >
-                  <AddIcon fontSize="small" />
-                </IconButton>
-              </Box>
-              <Box sx={{ overflow: 'auto', flex: 1 }}>
-                {dayMeals.map((meal) => (
+            <Box key={day.toString()} sx={{ width: 'calc((100% - 6 * 8px) / 7)' }}>
+              <Paper
+                sx={{
+                  p: 1,
+                  height: 120,
+                  bgcolor: !isCurrentMonth ? 'grey.100' :
+                           isToday(day) ? 'primary.light' : 'background.paper',
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+                elevation={isToday(day) ? 3 : 1}
+              >
+                <Box display="flex" justifyContent="space-between" alignItems="center">
                   <Typography
-                    key={meal.id}
-                    variant="caption"
-                    component="div"
-                    noWrap
-                    sx={{
-                      bgcolor: 'primary.main',
-                      color: 'primary.contrastText',
-                      p: 0.5,
-                      borderRadius: 1,
-                      mb: 0.5,
-                    }}
+                    color={!isCurrentMonth ? 'text.disabled' : 'inherit'}
                   >
-                    {meal.recipe.name}
+                    {format(day, 'd')}
                   </Typography>
-                ))}
-              </Box>
-            </Paper>
+                  <IconButton
+                    size="small"
+                    onClick={() => onAddMeal(day)}
+                    sx={{ visibility: isCurrentMonth ? 'visible' : 'hidden' }}
+                  >
+                    <AddIcon fontSize="small" />
+                  </IconButton>
+                </Box>
+                <Box sx={{ overflow: 'auto', flex: 1 }}>
+                  {dayMeals.map((meal) => (
+                    <Typography
+                      key={meal.id}
+                      variant="caption"
+                      component="div"
+                      noWrap
+                      sx={{
+                        bgcolor: 'primary.main',
+                        color: 'primary.contrastText',
+                        p: 0.5,
+                        borderRadius: 1,
+                        mb: 0.5,
+                      }}
+                    >
+                      {meal.recipe.name}
+                    </Typography>
+                  ))}
+                </Box>
+              </Paper>
+            </Box>
           );
         })}
       </Box>
