@@ -68,7 +68,7 @@ First Flavors is a personalized Next.js application designed to help parents tra
    npm run dev
    ```
 
-Visit [[http://localhost:5558](http://localhost:5558/)](http://localhost:3000) to see the application.
+Visit [[http://localhost:5558](http://localhost:5558/)](http://localhost:5558) to see the application.
 
 ## 🚀 Deployment
 
