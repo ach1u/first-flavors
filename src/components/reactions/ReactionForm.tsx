@@ -8,11 +8,13 @@ import {
   Rating,
   Typography,
   IconButton,
+  CircularProgress,
 } from '@mui/material';
 import {
   PhotoCamera as PhotoCameraIcon,
   Clear as ClearIcon,
 } from '@mui/icons-material';
+import { uploadImage } from '@/lib/upload';
 
 interface ReactionFormProps {
   recipeId: string;
@@ -25,6 +27,7 @@ export default function ReactionForm({ recipeId, onSubmit, onCancel }: ReactionF
   const [rating, setRating] = useState<number | null>(null);
   const [photo, setPhoto] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handlePhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,27 +52,38 @@ export default function ReactionForm({ recipeId, onSubmit, onCancel }: ReactionF
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('recipeId', recipeId);
-    formData.append('notes', notes);
-    if (rating !== null) {
-      formData.append('rating', rating.toString());
-    }
-    if (photo) {
-      formData.append('photo', photo);
-    }
+    setIsSubmitting(true);
 
     try {
+      let photoUrl: string | undefined;
+      if (photo) {
+        photoUrl = await uploadImage(photo);
+      }
+
+      const formData = new FormData();
+      formData.append('recipeId', recipeId);
+      formData.append('notes', notes);
+      if (rating !== null) {
+        formData.append('rating', rating.toString());
+      }
+      if (photoUrl) {
+        formData.append('photoUrl', photoUrl);
+      }
+
       const response = await fetch('/api/reactions', {
         method: 'POST',
         body: formData,
       });
 
-      if (response.ok) {
-        onSubmit();
+      if (!response.ok) {
+        throw new Error('Failed to submit reaction');
       }
+
+      onSubmit();
     } catch (error) {
       console.error('Failed to submit reaction:', error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -96,6 +110,7 @@ export default function ReactionForm({ recipeId, onSubmit, onCancel }: ReactionF
             multiline
             rows={3}
             fullWidth
+            disabled={isSubmitting}
           />
 
           <Box>
@@ -106,6 +121,7 @@ export default function ReactionForm({ recipeId, onSubmit, onCancel }: ReactionF
               onChange={handlePhotoChange}
               style={{ display: 'none' }}
               id="photo-upload"
+              disabled={isSubmitting}
             />
             <Stack spacing={2} alignItems="flex-start">
               <label htmlFor="photo-upload">
@@ -115,6 +131,7 @@ export default function ReactionForm({ recipeId, onSubmit, onCancel }: ReactionF
                   startIcon={<PhotoCameraIcon />}
                   fullWidth
                   sx={{ mb: 1 }}
+                  disabled={isSubmitting}
                 >
                   {photo ? 'Change Photo' : 'Add Photo'}
                 </Button>
@@ -143,6 +160,7 @@ export default function ReactionForm({ recipeId, onSubmit, onCancel }: ReactionF
                   <IconButton
                     size="small"
                     onClick={handleClearPhoto}
+                    disabled={isSubmitting}
                     sx={{
                       position: 'absolute',
                       top: 8,
@@ -163,13 +181,14 @@ export default function ReactionForm({ recipeId, onSubmit, onCancel }: ReactionF
 
           <Stack 
             direction={{ xs: 'column', sm: 'row' }} 
-            spacing={2} 
+            spacing={2}
             sx={{ pt: 2 }}
           >
             <Button 
               onClick={onCancel}
               fullWidth
               variant="outlined"
+              disabled={isSubmitting}
             >
               Cancel
             </Button>
@@ -178,8 +197,16 @@ export default function ReactionForm({ recipeId, onSubmit, onCancel }: ReactionF
               variant="contained" 
               color="primary"
               fullWidth
+              disabled={isSubmitting}
             >
-              Submit Reaction
+              {isSubmitting ? (
+                <>
+                  <CircularProgress size={20} sx={{ mr: 1 }} />
+                  Submitting...
+                </>
+              ) : (
+                'Submit Reaction'
+              )}
             </Button>
           </Stack>
         </Stack>
