@@ -14,12 +14,12 @@ First Flavors is a personalized Next.js application designed to help parents tra
 - **API Routes**: Built robust endpoints for all database interactions. 🌐
 - **Calendar View**: Created interactive meal planning calendar. 📅
 - **Shopping List**: Added generation of shopping lists from meal plans. 🛒
+- **Testing**: Completed database operation testing with Prisma Studio. ✅
 
 ### 🛠️ What's Next
 1. **Photo Storage**: Implement for successful meals. 📸
-2. **Testing**: Use Prisma Studio to test database operations. 🧪
-3. **Responsive Design**: Enhance mobile usability for kitchen use. 📱
-4. **Deployment**: Deploy to Vercel and configure the database on Supabase or Railway. 🚢
+2. **Responsive Design**: Enhance mobile usability for kitchen use. 📱
+3. **Deployment**: Deploy to Vercel and configure the database on Supabase or Railway. 🚢
 
 ## ✨ Features
 
