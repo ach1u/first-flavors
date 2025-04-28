@@ -1,18 +1,31 @@
 # Active Context
 
 ## Current Work Focus
-- Setting up the foundational database schema and applying initial migrations.
-- Running the development server with Turbopack.
-- Ensuring the Prisma ORM is correctly configured and operational.
+- Preparing for production deployment to Vercel
+- Setting up Cloudinary for production image storage
+- Finalizing responsive design improvements
+- Setting up database hosting with Supabase
 
 ## Recent Changes
-- Initialized Prisma schema with models for Ingredients, Recipes, RecipeIngredients, MealPlan, and Reactions.
-- Applied the initial database migration.
-- Installed Material UI for UI development.
+- Enhanced mobile responsiveness across all components:
+  - Improved RecipeForm layout for mobile
+  - Optimized MealPlanCalendar for small screens
+  - Enhanced ReactionForm photo upload UX
+  - Adjusted ShoppingList for better mobile viewing
+- Added Cloudinary integration for production image storage
+- Created comprehensive deployment configuration
+- Added environment variable templates
 
 ## Next Steps
-1. Develop CRUD operations for recipes and ingredients.
-2. Build UI components for recipe cards and forms.
-3. Implement API routes for database interactions.
-4. Start designing the calendar view for meal planning.
-5. Test database operations using Prisma Studio.
+1. Create Supabase project and configure database
+2. Set up Vercel project and environment variables
+3. Deploy application and run database migrations
+4. Perform comprehensive post-deployment testing
+5. Monitor application performance in production
+
+## Active Decisions and Considerations
+- Chosen Supabase for database hosting due to PostgreSQL compatibility
+- Implemented Cloudinary for scalable image storage
+- Enhanced mobile-first approach for better user experience
+- Established deployment checklist for systematic rollout
+- Planning for production monitoring and error tracking

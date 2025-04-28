@@ -74,15 +74,18 @@ export default function ReactionForm({ recipeId, onSubmit, onCancel }: ReactionF
   };
 
   return (
-    <Paper sx={{ p: 3 }}>
+    <Paper sx={{ p: { xs: 2, sm: 3 } }}>
       <Box component="form" onSubmit={handleSubmit}>
         <Stack spacing={3}>
           <Box>
-            <Typography component="legend">Rating</Typography>
+            <Typography component="legend" sx={{ mb: 1 }}>Rating</Typography>
             <Rating
               value={rating}
               onChange={(_, newValue) => setRating(newValue)}
               size="large"
+              sx={{
+                fontSize: { xs: '1.5rem', sm: '2rem' }
+              }}
             />
           </Box>
 
@@ -91,7 +94,7 @@ export default function ReactionForm({ recipeId, onSubmit, onCancel }: ReactionF
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             multiline
-            rows={4}
+            rows={3}
             fullWidth
           />
 
@@ -104,46 +107,78 @@ export default function ReactionForm({ recipeId, onSubmit, onCancel }: ReactionF
               style={{ display: 'none' }}
               id="photo-upload"
             />
-            <label htmlFor="photo-upload">
-              <Button
-                variant="outlined"
-                component="span"
-                startIcon={<PhotoCameraIcon />}
-              >
-                Add Photo
-              </Button>
-            </label>
+            <Stack spacing={2} alignItems="flex-start">
+              <label htmlFor="photo-upload">
+                <Button
+                  variant="outlined"
+                  component="span"
+                  startIcon={<PhotoCameraIcon />}
+                  fullWidth
+                  sx={{ mb: 1 }}
+                >
+                  {photo ? 'Change Photo' : 'Add Photo'}
+                </Button>
+              </label>
 
-            {photoPreview && (
-              <Box mt={2} position="relative" display="inline-block">
-                <img
-                  src={photoPreview}
-                  alt="Preview"
-                  style={{
-                    maxWidth: '200px',
-                    maxHeight: '200px',
-                    objectFit: 'contain',
-                  }}
-                />
-                <IconButton
-                  size="small"
-                  onClick={handleClearPhoto}
+              {photoPreview && (
+                <Box 
+                  position="relative" 
+                  width="100%" 
                   sx={{
-                    position: 'absolute',
-                    top: -8,
-                    right: -8,
-                    bgcolor: 'background.paper',
+                    aspectRatio: '16/9',
+                    overflow: 'hidden',
+                    borderRadius: 1,
+                    bgcolor: 'grey.100'
                   }}
                 >
-                  <ClearIcon />
-                </IconButton>
-              </Box>
-            )}
+                  <img
+                    src={photoPreview}
+                    alt="Preview"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'contain'
+                    }}
+                  />
+                  <IconButton
+                    size="small"
+                    onClick={handleClearPhoto}
+                    sx={{
+                      position: 'absolute',
+                      top: 8,
+                      right: 8,
+                      bgcolor: 'background.paper',
+                      boxShadow: 1,
+                      '&:hover': {
+                        bgcolor: 'background.paper',
+                      }
+                    }}
+                  >
+                    <ClearIcon />
+                  </IconButton>
+                </Box>
+              )}
+            </Stack>
           </Box>
 
-          <Stack direction="row" spacing={2} justifyContent="flex-end">
-            <Button onClick={onCancel}>Cancel</Button>
-            <Button type="submit" variant="contained" color="primary">
+          <Stack 
+            direction={{ xs: 'column', sm: 'row' }} 
+            spacing={2} 
+            sx={{ pt: 2 }}
+          >
+            <Button 
+              onClick={onCancel}
+              fullWidth
+              variant="outlined"
+            >
+              Cancel
+            </Button>
+            <Button 
+              type="submit" 
+              variant="contained" 
+              color="primary"
+              fullWidth
+            >
               Submit Reaction
             </Button>
           </Stack>

@@ -50,13 +50,22 @@ export default function MealPlanCalendar({ mealPlans, onAddMeal }: MealPlanCalen
     );
 
   return (
-    <Paper sx={{ p: 3 }}>
+    <Paper sx={{ p: { xs: 2, sm: 3 } }}>
       {/* Calendar Header */}
-      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={3}>
+      <Stack 
+        direction="row" 
+        alignItems="center" 
+        justifyContent="space-between" 
+        mb={3}
+        sx={{ 
+          flexDirection: { xs: 'column', sm: 'row' },
+          gap: { xs: 2, sm: 0 }
+        }}
+      >
         <IconButton onClick={goToPreviousMonth}>
           <ChevronLeft />
         </IconButton>
-        <Typography variant="h5">
+        <Typography variant="h5" sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem' } }}>
           {format(currentDate, 'MMMM yyyy')}
         </Typography>
         <IconButton onClick={goToNextMonth}>
@@ -65,11 +74,30 @@ export default function MealPlanCalendar({ mealPlans, onAddMeal }: MealPlanCalen
       </Stack>
 
       {/* Calendar Grid */}
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+      <Box sx={{ 
+        display: 'flex', 
+        flexWrap: 'wrap', 
+        gap: { xs: 0.5, sm: 1 },
+        mx: { xs: -1, sm: 0 }
+      }}>
         {/* Day Labels */}
         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-          <Box key={day} sx={{ width: 'calc((100% - 6 * 8px) / 7)' }}>
-            <Typography align="center" sx={{ fontWeight: 'bold' }}>
+          <Box 
+            key={day} 
+            sx={{ 
+              width: { 
+                xs: 'calc((100% - 6 * 4px) / 7)',
+                sm: 'calc((100% - 6 * 8px) / 7)'
+              }
+            }}
+          >
+            <Typography 
+              align="center" 
+              sx={{ 
+                fontWeight: 'bold',
+                fontSize: { xs: '0.75rem', sm: '0.875rem' }
+              }}
+            >
               {day}
             </Typography>
           </Box>
@@ -81,30 +109,43 @@ export default function MealPlanCalendar({ mealPlans, onAddMeal }: MealPlanCalen
           const isCurrentMonth = isSameMonth(day, currentDate);
           
           return (
-            <Box key={day.toString()} sx={{ width: 'calc((100% - 6 * 8px) / 7)' }}>
+            <Box 
+              key={day.toString()} 
+              sx={{ 
+                width: { 
+                  xs: 'calc((100% - 6 * 4px) / 7)',
+                  sm: 'calc((100% - 6 * 8px) / 7)'
+                }
+              }}
+            >
               <Paper
                 sx={{
-                  p: 1,
-                  height: 120,
+                  p: { xs: 0.5, sm: 1 },
+                  height: { xs: 100, sm: 120 },
                   bgcolor: !isCurrentMonth ? 'grey.100' :
                            isToday(day) ? 'primary.light' : 'background.paper',
                   display: 'flex',
                   flexDirection: 'column',
+                  fontSize: { xs: '0.75rem', sm: '0.875rem' }
                 }}
                 elevation={isToday(day) ? 3 : 1}
               >
                 <Box display="flex" justifyContent="space-between" alignItems="center">
                   <Typography
                     color={!isCurrentMonth ? 'text.disabled' : 'inherit'}
+                    sx={{ fontSize: 'inherit' }}
                   >
                     {format(day, 'd')}
                   </Typography>
                   <IconButton
                     size="small"
                     onClick={() => onAddMeal(day)}
-                    sx={{ visibility: isCurrentMonth ? 'visible' : 'hidden' }}
+                    sx={{ 
+                      visibility: isCurrentMonth ? 'visible' : 'hidden',
+                      padding: { xs: '2px', sm: '4px' }
+                    }}
                   >
-                    <AddIcon fontSize="small" />
+                    <AddIcon sx={{ fontSize: { xs: '1rem', sm: '1.25rem' } }} />
                   </IconButton>
                 </Box>
                 <Box sx={{ overflow: 'auto', flex: 1 }}>
@@ -117,9 +158,10 @@ export default function MealPlanCalendar({ mealPlans, onAddMeal }: MealPlanCalen
                       sx={{
                         bgcolor: 'primary.main',
                         color: 'primary.contrastText',
-                        p: 0.5,
+                        p: { xs: '2px 4px', sm: '4px 8px' },
                         borderRadius: 1,
                         mb: 0.5,
+                        fontSize: { xs: '0.625rem', sm: '0.75rem' }
                       }}
                     >
                       {meal.recipe.name}

@@ -75,7 +75,7 @@ export default function RecipeForm({ recipe, ingredients, onSubmit }: RecipeForm
   };
 
   return (
-    <Paper sx={{ p: 3 }}>
+    <Paper sx={{ p: { xs: 2, sm: 3 } }}>
       <Box component="form" onSubmit={handleSubmit}>
         <Stack spacing={3}>
           <TextField
@@ -95,15 +95,15 @@ export default function RecipeForm({ recipe, ingredients, onSubmit }: RecipeForm
             fullWidth
           />
 
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-            <TextField
-              label="Preparation Time (minutes)"
-              type="number"
-              value={formData.preparationTime}
-              onChange={(e) => setFormData({ ...formData, preparationTime: e.target.value })}
-              fullWidth
-            />
+          <TextField
+            label="Preparation Time (minutes)"
+            type="number"
+            value={formData.preparationTime}
+            onChange={(e) => setFormData({ ...formData, preparationTime: e.target.value })}
+            fullWidth
+          />
 
+          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
             <TextField
               label="Age Range Start (months)"
               type="number"
