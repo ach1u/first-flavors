@@ -4,98 +4,86 @@ First Flavors is a personalized Next.js application designed to help parents tra
 
 ## 🚀 Current Progress
 
-### ✅ Accomplished
-- **Core Features**: Complete implementation of all planned features
-- **Database**: PostgreSQL with Prisma ORM, fully tested
-- **UI Components**: Mobile-responsive recipe cards, forms, and calendars
-- **Image Storage**: Cloudinary integration for production
-- **API Routes**: Complete coverage for all database operations
-- **Mobile Design**: Enhanced responsive layout for kitchen use
-- **Deployment Ready**: Configuration prepared for Vercel and Supabase
+- ✅ Initial project setup with Next.js 14 and TypeScript
+- ✅ Database schema design and Prisma integration
+- ✅ Basic UI components with Material UI
+- 🏗️ Recipe management system
+- 🏗️ Ingredient tracking functionality
+- 🏗️ Meal planning calendar
 
 ## ✨ Features
 
-### Recipe Management
-- Create and manage recipes with ingredients, instructions, and preparation times
-- Track age appropriateness for different recipes
-- Associate ingredients with quantities and units
-- Mobile-optimized forms for easy kitchen use
+- **Recipe Management**
+  - Create, edit, and delete baby food recipes
+  - Filter recipes by age appropriateness
+  - Categorize by meal type and preparation time
+  - Track ingredients and preparation instructions
 
-### Ingredient Tracking
-- Log first introduction dates for new ingredients
-- Mark and monitor potential allergens
-- Keep notes on baby's reactions
-- Intuitive mobile interface for quick updates
+- **Ingredient Tracking**
+  - Log first introduction dates for new ingredients
+  - Monitor potential allergens
+  - Record baby's reactions and preferences
+  - Track ingredient history
 
-### Meal Planning
-- Interactive calendar view for planning meals
-- Add and edit meal plans with specific recipes
-- Generate shopping lists for planned meals
-- Track notes for each planned meal
-- Mobile-friendly calendar navigation
-
-### Photo Storage
-- Capture and store photos of successful meals
-- Cloud storage integration via Cloudinary
-- Organize photos by recipe and date
-- Mobile-optimized photo upload
-
-### Shopping List Generation
-- Automatically compile ingredients from planned meals
-- Show quantities needed for each ingredient
-- Group by recipe for easy reference
-- Highlight allergens for extra attention
-- Mobile-responsive layout for in-store use
+- **Meal Planning**
+  - Interactive calendar for meal scheduling
+  - Automatic shopping list generation
+  - Photo storage for successful meals
+  - Notes and observations tracking
 
 ## 🛠️ Getting Started
 
-1. Clone the repository and install dependencies:
-```bash
-git clone <repository-url>
-cd first-flavors
-npm install
-```
+### Prerequisites
 
-2. Set up your environment variables:
-```bash
-cp .env.example .env
-```
+- Node.js (Latest LTS version)
+- PostgreSQL
+- npm or yarn
 
-3. Update your .env file with your database and Cloudinary credentials
+### Installation
 
-4. Initialize the database:
-```bash
-npx prisma migrate dev
-```
+1. Clone the repository:
+   ```bash
+   git clone [repository-url]
+   cd first-flavors
+   ```
 
-5. Run the development server:
-```bash
-npm run dev
-```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Set up your environment variables:
+   ```bash
+   cp .env.example .env
+   ```
+   Update the `.env` file with your PostgreSQL connection string.
+
+4. Set up the database:
+   ```bash
+   npx prisma migrate dev
+   ```
+
+5. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+Visit [http://localhost:3000](http://localhost:3000) to see the application.
 
 ## 🚀 Deployment
 
-### Prerequisites
-- Supabase account for database hosting
-- Vercel account for application deployment
-- Cloudinary account for image storage
+This application is configured for deployment on Vercel with a PostgreSQL database hosted on Supabase/Railway. Follow these steps:
 
-### Steps
-1. Set up your Supabase database
-2. Configure Vercel project settings
-3. Add required environment variables
-4. Deploy using the Vercel CLI or GitHub integration
-
-Detailed deployment instructions can be found in [DEPLOYMENT.md](DEPLOYMENT.md).
+1. Push your code to a GitHub repository
+2. Connect your repository to Vercel
+3. Configure your environment variables in Vercel
+4. Deploy!
 
 ## 📚 Learn More
 
 - [Next.js Documentation](https://nextjs.org/docs)
-- [Prisma Documentation](https://www.prisma.io/docs)
-- [Material UI Documentation](https://mui.com/material-ui/getting-started/overview/)
-- [Cloudinary Documentation](https://cloudinary.com/documentation)
+- [Material UI Documentation](https://mui.com/docs/getting-started/overview/)
+- [Prisma Documentation](https://www.prisma.io/docs/)
 
 ## 📄 License
 
