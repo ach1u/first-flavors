@@ -13,3 +13,62 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Ingredient {
+  id                 String             @id @default(cuid())
+  name               String
+  dateIntroduced     DateTime?
+  isAllergen         Boolean            @default(false)
+  notes              String?
+  recipeIngredients  RecipeIngredient[]
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+}
+
+model Recipe {
+  id                 String             @id @default(cuid())
+  name               String
+  description        String?
+  preparationTime    Int?               // in minutes
+  ageRangeStart      Int?               // in months
+  ageRangeEnd        Int?               // in months
+  instructions       String?
+  recipeIngredients  RecipeIngredient[]
+  mealPlans          MealPlan[]
+  reactions          Reaction[]
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+}
+
+model RecipeIngredient {
+  recipe       Recipe     @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  recipeId     String
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+  ingredientId String
+  quantity     Float?
+  unit         String?
+
+  @@id([recipeId, ingredientId])
+}
+
+model MealPlan {
+  id          String    @id @default(cuid())
+  recipe      Recipe    @relation(fields: [recipeId], references: [id])
+  recipeId    String
+  plannedDate DateTime
+  notes       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Reaction {
+  id          String    @id @default(cuid())
+  recipe      Recipe    @relation(fields: [recipeId], references: [id])
+  recipeId    String
+  reactionDate DateTime
+  notes       String?
+  rating      Int?      // 1-5 scale
+  photoUrl    String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
