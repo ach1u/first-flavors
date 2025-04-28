@@ -47,7 +47,7 @@ export default function IngredientForm({ ingredient, onSubmit }: IngredientFormP
           <DatePicker
             label="Date Introduced"
             value={formData.dateIntroduced}
-            onChange={(date) => setFormData({ ...formData, dateIntroduced: date })}
+            onChange={(date) => setFormData({ ...formData, dateIntroduced: date || undefined })}
           />
 
           <FormControlLabel
