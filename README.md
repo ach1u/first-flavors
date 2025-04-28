@@ -9,19 +9,41 @@ First Flavors is a personalized Next.js application designed to help parents tra
 - **UI Framework**: Material UI (MUI) v5 installed for modern and consistent design. 🎨
 - **Database**: PostgreSQL initialized and connected using Prisma ORM. 🗄️
 - **Schema**: Defined models for Ingredients, Recipes, RecipeIngredients, MealPlan, and Reactions. 📋
-- **Migrations**: Initial database migration applied successfully. ✅
-- **Development Server**: Running with Turbopack for fast builds. ⚡
+- **CRUD Operations**: Implemented complete management for recipes and ingredients. ✍️
+- **UI Components**: Developed recipe cards, forms, and ingredient tracking. 🖼️
+- **API Routes**: Built robust endpoints for all database interactions. 🌐
+- **Calendar View**: Created interactive meal planning calendar. 📅
+- **Shopping List**: Added generation of shopping lists from meal plans. 🛒
 
 ### 🛠️ What's Next
-1. **CRUD Operations**: Implement for recipes and ingredients. ✍️
-2. **UI Components**: Develop recipe cards, forms, and ingredient tracking. 🖼️
-3. **API Routes**: Build for database interactions. 🌐
-4. **Calendar View**: Create for meal planning. 📅
-5. **Shopping List**: Add functionality for generation. 🛒
-6. **Photo Storage**: Implement for successful meals. 📸
-7. **Testing**: Use Prisma Studio to test database operations. 🧪
-8. **Responsive Design**: Ensure usability on mobile devices. 📱
-9. **Deployment**: Deploy to Vercel and configure the database on Supabase or Railway. 🚢
+1. **Photo Storage**: Implement for successful meals. 📸
+2. **Testing**: Use Prisma Studio to test database operations. 🧪
+3. **Responsive Design**: Enhance mobile usability for kitchen use. 📱
+4. **Deployment**: Deploy to Vercel and configure the database on Supabase or Railway. 🚢
+
+## ✨ Features
+
+### Recipe Management
+- Create and manage recipes with ingredients, instructions, and preparation times
+- Track age appropriateness for different recipes
+- Associate ingredients with quantities and units
+
+### Ingredient Tracking
+- Log first introduction dates for new ingredients
+- Mark and monitor potential allergens
+- Keep notes on baby's reactions
+
+### Meal Planning
+- Interactive calendar view for planning meals
+- Add and edit meal plans with specific recipes
+- Generate shopping lists for planned meals
+- Track notes for each planned meal
+
+### Shopping List Generation
+- Automatically compile ingredients from planned meals
+- Show quantities needed for each ingredient
+- Group by recipe for easy reference
+- Highlight allergens for extra attention
 
 ## 🛠️ Getting Started
 
