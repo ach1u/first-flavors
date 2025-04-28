@@ -12,11 +12,16 @@
   - Recipe management with ingredient relationships
   - Error handling and proper HTTP status codes
   - TypeScript type safety throughout the API layer
+- Developed core UI components:
+  - IngredientCard for displaying ingredient details
+  - IngredientForm for adding/editing ingredients
+  - RecipeCard for displaying recipe information
+  - RecipeForm for creating/editing recipes with ingredient selection
 
 ## What's Left to Build
 1. ~~Implement CRUD operations for recipes and ingredients.~~ ✅
-2. Develop UI components for recipe cards, forms, and ingredient tracking.
-3. Build API routes for database interactions.
+2. ~~Develop UI components for recipe cards, forms, and ingredient tracking.~~ ✅
+3. ~~Build API routes for database interactions.~~ ✅
 4. Create a calendar view for meal planning.
 5. Add functionality for shopping list generation.
 6. Implement photo storage for successful meals.
